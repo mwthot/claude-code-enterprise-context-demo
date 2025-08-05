@@ -1,0 +1,51 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(*.{java,js,ts,jsx,tsx,py,go,yaml,json,md,sql})",
+      "Bash(docker-compose:*)",
+      "Bash(kubectl:*)",
+      "Bash(npm run:*)",
+      "Bash(mvn:*)",
+      "Bash(gradle:*)",
+      "Bash(pytest:*)",
+      "Bash(go test:*)",
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)"
+    ],
+    "deny": [
+      "Bash(rm -rf:*)",
+      "Bash(sudo:*)",
+      "Bash(kubectl delete:*)",
+      "Write(*.{jar,class,pyc,node_modules})",
+      "Edit(**/package-lock.json)",
+      "Edit(**/pom.xml)",
+      "Edit(**/*-prod.yml)",
+      "Edit(**/*-production.yml)"
+    ],
+    "additionalDirectories": [
+      "shared/",
+      "docs/",
+      "infrastructure/"
+    ]
+  },
+  "env": {
+    "NODE_ENV": "development",
+    "JAVA_HOME": "/usr/lib/jvm/java-21",
+    "SPRING_PROFILES_ACTIVE": "local",
+    "DATABASE_URL": "postgresql://localhost:5432/ecommerce_dev"
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo \"Executing: $(echo '$HOOK_INPUT' | jq -r '.tool_input.command')\" >> ~/.claude/command-audit.log"
+          }
+        ]
+      }
+    ]
+  }
+}
