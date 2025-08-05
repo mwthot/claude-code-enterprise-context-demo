@@ -36,6 +36,17 @@
     "DATABASE_URL": "postgresql://localhost:5432/ecommerce_dev"
   },
   "hooks": {
+    "PreCompact": [
+      {
+        "matcher": "auto", 
+        "hooks": [
+          {
+            "type": "command", 
+            "command": "echo 'Preserve: service architecture, current feature context, debuggin state, established pattens' > /tmp/compact-instructions"
+          }
+        ]
+      }
+    ],
     "PreToolUse": [
       {
         "matcher": "Bash",
@@ -43,6 +54,17 @@
           {
             "type": "command",
             "command": "echo \"Executing: $(echo '$HOOK_INPUT' | jq -r '.tool_input.command')\" >> ~/.claude/command-audit.log"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command", 
+            "command": "if [[ \"$1\" =~ \\.(ts|tsx|js|jsx)$ ]]; then npx prettier --write \"$1\"; fi"
           }
         ]
       }

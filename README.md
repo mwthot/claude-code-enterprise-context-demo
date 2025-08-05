@@ -32,11 +32,40 @@ claude-code-enterprise-context-demo/
     └── cross-service-debugging/      # Complex debugging workflows
 ```
 
+## Enterprise Context Management in Action
+
+### Scenario
+A senior developer needs to add a preferred payment method to user profiles across microservices architecture.
+
+### Phase 1: Naive Approach (Fails)
+- No architectural context → violates service boundaries
+- Implementation details without patterns → inconsistent code
+- Missing security considerations → compliance violations
+
+### Phase 2: Strategic Context Management (Succeeds)
+1. Load project memory: `@CLAUDE.md` for architecture
+2. Service-specific context: `@services/user-service/CLAUDE.md`
+3. Subagent analysis: Database expert for schema, security reviewer for compliance
+4. Pattern-following implementation using existing code references
+
+### Result
+First approach: Extensive PR feedback, architectural violations
+Second approach: First-review approval, pattern consistency
+
+## Test implementation
+1. Navigate to project root and start Claude
+
+2. Test service-specific context
+
+3. Test subagent delegation 
+
+4. Test crisis scenario walkthrough
+
 ## Memory Hierarchy
 
 ### Project-Level Memory (`./CLAUDE.md`)
 
-Notice how this project memory serves dual purposes: it provides Claude with architectural context while documenting decisions that human developers need to understand. The file references (@docs/, @infrastructure/) demonstrate how memory integrates with existing documentation rather than duplicating it.
+Project memory serves dual purposes: it provides Claude with architectural context while documenting decisions that human developers need to understand. The file references (@docs/, @infrastructure/) demonstrate how memory integrates with existing documentation rather than duplicating it.
 
 ### Service-Level Memory (`services/user-service/CLAUDE.md`)
 
