@@ -63,6 +63,16 @@ Second approach: First-review approval, pattern consistency
 
 ## Memory Hierarchy
 
+| Layer | Location/Type | Purpose | Persistence |
+|-------|---------------|---------|-------------|
+| **Enterprise Memory** | Organization-wide policies | Standards, compliance, security policies | Permanent |
+| **Project Memory** | `./CLAUDE.md` | Team conventions, workflows, architecture | Version controlled |
+| **Service Memory** | Service-specific context | Architecture patterns, models, error handling | Service lifecycle |
+| **Local User Imports** | `@~/.claude/`, `CLAUDE.local.md` | Personal preferences, sandbox URLs | User session |
+| **Tool & Subagent Context** | Runtime context | Temporary subagent state, recent edits | Session-scoped |
+| **Conversation & Volatile Logs** | Active chat | Current turns, compaction prompts | Until cleared/compacted |
+
+
 ### Project-Level Memory (`./CLAUDE.md`)
 
 Project memory serves dual purposes: it provides Claude with architectural context while documenting decisions that human developers need to understand. The file references (@docs/, @infrastructure/) demonstrate how memory integrates with existing documentation rather than duplicating it.

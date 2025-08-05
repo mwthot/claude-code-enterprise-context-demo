@@ -30,6 +30,10 @@ Payment Service
 @docs/service-dependencies.md - Service interaction patterns and contracts
 @infrastructure/kubernetes/ - Production deployment and scaling configuration
 
+## Dependency Context 
+@.claude/dependency-map.json - Service relationships and integration patterns
+@.claude/onboarding-paths.json - Role-based learning sequences
+
 ## Development Workflow
 - Feature branches from `develop`, merge via pull request with required reviews
 - Integration tests run in Docker containers via GitHub Actions
